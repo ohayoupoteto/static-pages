@@ -49,7 +49,7 @@
           // キーボードが非表示の時は何もしない
           if (keyboardHeight === 0) return;
 
-          button.style.bottom = `${keyboardHeight - window.scrollY}px`;
+          button.style.bottom = `${keyboardHeight - target.offsetTop}px`;
         });
       }
 
