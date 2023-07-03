@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <style>
+      input {
+        display: block;
+        margin-top: 5rem;
+      }
+      button {
+        width: 100vw;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        line-height: 50px;
+        font-weight: bold;
+        transition: bottom 0.3s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <input type="text" />
+    <input type="text" />
+    <input type="text" />
+    <button>sample button</button>
+
+    <script>
+      function registerPushupEvent() {
+        if (!/iPhone|iPad|iPod/.test(navigator.userAgent)) return;
+
+        const button = document.querySelector("button");
+
+        visualViewport.addEventListener("resize", ({ target }) => {
+          const keyboardHeight = window.innerHeight - target.height;
+          const bottomValue = keyboardHeight === 0 ? "" : `${keyboardHeight}px`;
+          button.style.bottom = bottomValue;
+        });
+
+        visualViewport.addEventListener("scroll", ({ target }) => {
+          const keyboardHeight = window.innerHeight - target.height;
+          // キーボードが非表示の時は何もしない
+          if (keyboardHeight === 0) return;
+
+          button.style.bottom = `${keyboardHeight - window.scrollY}px`;
+        });
+      }
+
+      registerPushupEvent();
+    </script>
+  </body>
+</html>
